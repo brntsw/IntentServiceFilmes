@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IntentServiceFilmes</string>
+    <string name="movie">Filme</string>
 </resources>
