@@ -1,4 +1,4 @@
-package intentservicefilmes.exemplo.com.intentservicefilmes.utils;
+package intentservicefilmes.exemplo.com.intentservicefilmes.remote;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

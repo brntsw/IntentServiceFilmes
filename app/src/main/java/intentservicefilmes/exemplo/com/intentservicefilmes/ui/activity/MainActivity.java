@@ -20,7 +20,7 @@ import intentservicefilmes.exemplo.com.intentservicefilmes.adapter.FilmeAdapter;
 import intentservicefilmes.exemplo.com.intentservicefilmes.entity.Filme;
 import intentservicefilmes.exemplo.com.intentservicefilmes.remote.FilmesPopularesIntentService;
 import intentservicefilmes.exemplo.com.intentservicefilmes.receiver.FilmesResultReceiver;
-import intentservicefilmes.exemplo.com.intentservicefilmes.utils.ComunicacaoRest;
+import intentservicefilmes.exemplo.com.intentservicefilmes.remote.ComunicacaoRest;
 
 public class MainActivity extends AppCompatActivity implements FilmesResultReceiver.Receiver {
     private ProgressBar pd;

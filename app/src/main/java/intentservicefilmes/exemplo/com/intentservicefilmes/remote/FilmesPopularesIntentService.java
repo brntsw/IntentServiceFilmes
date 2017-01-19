@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 
 import intentservicefilmes.exemplo.com.intentservicefilmes.entity.Filme;
-import intentservicefilmes.exemplo.com.intentservicefilmes.utils.ComunicacaoRest;
 
 /**
  * Created by BPardini on 21/12/2016.
