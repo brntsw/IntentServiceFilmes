@@ -3,8 +3,6 @@
     package="intentservicefilmes.exemplo.com.intentservicefilmes">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +19,7 @@
         </activity>
 
         <service
-            android:name=".remote.PopularMoviesIntentService"
+            android:name=".remote.FilmesPopularesIntentService"
             android:exported="false" />
     </application>
 

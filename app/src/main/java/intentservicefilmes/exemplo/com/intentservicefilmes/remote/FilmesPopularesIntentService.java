@@ -3,27 +3,19 @@ package intentservicefilmes.exemplo.com.intentservicefilmes.remote;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.ResultReceiver;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.List;
-
-import intentservicefilmes.exemplo.com.intentservicefilmes.entity.Movie;
-import intentservicefilmes.exemplo.com.intentservicefilmes.utils.NetworkUtils;
+import intentservicefilmes.exemplo.com.intentservicefilmes.entity.Filme;
+import intentservicefilmes.exemplo.com.intentservicefilmes.utils.ComunicacaoRest;
 
 /**
  * Created by BPardini on 21/12/2016.
  */
 
-public class PopularMoviesIntentService extends IntentService {
+public class FilmesPopularesIntentService extends IntentService {
 
-    public PopularMoviesIntentService(){
-        super(PopularMoviesIntentService.class.getName());
+    public FilmesPopularesIntentService(){
+        super(FilmesPopularesIntentService.class.getName());
     }
 
     @Override
@@ -34,11 +26,11 @@ public class PopularMoviesIntentService extends IntentService {
         Bundle bundle = new Bundle();
 
         try {
-            Movie[] movies = NetworkUtils.downloadData(url);
+            Filme[] movies = ComunicacaoRest.downloadData(url);
             bundle.putParcelableArray("movies", movies);
-            receiver.send(NetworkUtils.SUCCESS, bundle);
+            receiver.send(ComunicacaoRest.SUCCESS, bundle);
         } catch (Exception e) {
-            receiver.send(NetworkUtils.ERROR, Bundle.EMPTY);
+            receiver.send(ComunicacaoRest.ERROR, Bundle.EMPTY);
             e.printStackTrace();
         }
     }

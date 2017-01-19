@@ -1,4 +1,4 @@
-package intentservicefilmes.exemplo.com.intentservicefilmes.utils;
+package intentservicefilmes.exemplo.com.intentservicefilmes.receiver;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,11 +8,11 @@ import android.os.ResultReceiver;
  * Created by BPardini on 22/12/2016.
  */
 
-public class MoviesResultReceiver extends ResultReceiver {
+public class FilmesResultReceiver extends ResultReceiver {
 
     private Receiver mReceiver;
 
-    public MoviesResultReceiver(Handler handler) {
+    public FilmesResultReceiver(Handler handler) {
         super(handler);
     }
 

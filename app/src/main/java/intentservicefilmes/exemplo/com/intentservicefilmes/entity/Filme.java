@@ -8,7 +8,7 @@ import android.os.Parcelable;
  * Created by BPardini on 22/12/2016.
  */
 
-public class Movie implements Parcelable {
+public class Filme implements Parcelable {
 
     private int id;
     private String originalTitle;
@@ -16,9 +16,9 @@ public class Movie implements Parcelable {
     private String overview;
     private String releaseDate;
 
-    public Movie(){}
+    public Filme(){}
 
-    private Movie(Parcel in) {
+    private Filme(Parcel in) {
         id = in.readInt();
         originalTitle = in.readString();
         poster = in.readParcelable(Bitmap.class.getClassLoader());
@@ -26,15 +26,15 @@ public class Movie implements Parcelable {
         releaseDate = in.readString();
     }
 
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Creator<Filme> CREATOR = new Creator<Filme>() {
         @Override
-        public Movie createFromParcel(Parcel in) {
-            return new Movie(in);
+        public Filme createFromParcel(Parcel in) {
+            return new Filme(in);
         }
 
         @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
+        public Filme[] newArray(int size) {
+            return new Filme[size];
         }
     };
 

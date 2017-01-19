@@ -8,7 +8,7 @@
         android:id="@+id/img_movie"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:contentDescription="@string/movie"/>
+        android:contentDescription="@string/filme"/>
 
     <TextView
         android:id="@+id/tv_title"
@@ -19,18 +19,6 @@
         android:text="Star Wars"
         android:layout_toRightOf="@+id/img_movie"
         android:layout_toEndOf="@+id/img_movie"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
-
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:text="(14/12/2016)"
-        android:layout_toRightOf="@+id/tv_title"
-        android:layout_toEndOf="@+id/tv_title"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"/>
 

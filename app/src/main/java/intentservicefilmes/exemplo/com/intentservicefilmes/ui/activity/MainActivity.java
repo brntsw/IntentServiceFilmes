@@ -8,41 +8,38 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import intentservicefilmes.exemplo.com.intentservicefilmes.R;
-import intentservicefilmes.exemplo.com.intentservicefilmes.adapter.MovieAdapter;
-import intentservicefilmes.exemplo.com.intentservicefilmes.entity.Movie;
-import intentservicefilmes.exemplo.com.intentservicefilmes.remote.PopularMoviesIntentService;
-import intentservicefilmes.exemplo.com.intentservicefilmes.utils.MoviesResultReceiver;
-import intentservicefilmes.exemplo.com.intentservicefilmes.utils.NetworkUtils;
+import intentservicefilmes.exemplo.com.intentservicefilmes.adapter.FilmeAdapter;
+import intentservicefilmes.exemplo.com.intentservicefilmes.entity.Filme;
+import intentservicefilmes.exemplo.com.intentservicefilmes.remote.FilmesPopularesIntentService;
+import intentservicefilmes.exemplo.com.intentservicefilmes.receiver.FilmesResultReceiver;
+import intentservicefilmes.exemplo.com.intentservicefilmes.utils.ComunicacaoRest;
 
-public class MainActivity extends AppCompatActivity implements MoviesResultReceiver.Receiver {
+public class MainActivity extends AppCompatActivity implements FilmesResultReceiver.Receiver {
     private ProgressBar pd;
     private RecyclerView recyclerMovies;
-    private MoviesResultReceiver resultReceiver;
+    private FilmesResultReceiver resultReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        resultReceiver = new MoviesResultReceiver(new Handler());
+        resultReceiver = new FilmesResultReceiver(new Handler());
         pd = (ProgressBar) findViewById(R.id.downloadPD);
         recyclerMovies = (RecyclerView) findViewById(R.id.recycler_movies);
 
         resultReceiver.setReceiver(this);
-        Intent intent = new Intent(Intent.ACTION_SYNC, null, this, PopularMoviesIntentService.class);
+        Intent intent = new Intent(Intent.ACTION_SYNC, null, this, FilmesPopularesIntentService.class);
 
-        intent.putExtra("url", NetworkUtils.URL_POPULAR_MOVIES);
+        intent.putExtra("url", ComunicacaoRest.URL_POPULAR_MOVIES);
         intent.putExtra("receiver", resultReceiver);
 
         startService(intent);
@@ -54,27 +51,27 @@ public class MainActivity extends AppCompatActivity implements MoviesResultRecei
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         switch (resultCode){
-            case NetworkUtils.SUCCESS:
+            case ComunicacaoRest.SUCCESS:
                 pd.setVisibility(View.GONE);
 
-                List<Movie> movies = new ArrayList<>();
+                List<Filme> movies = new ArrayList<>();
 
                 Parcelable[] parcelableMovies = resultData.getParcelableArray("movies");
 
                 if(parcelableMovies != null) {
                     for (Parcelable parcelableMovie : parcelableMovies) {
-                        Movie movie = (Movie) parcelableMovie;
+                        Filme filme = (Filme) parcelableMovie;
 
-                        movies.add(movie);
+                        movies.add(filme);
                     }
                 }
 
                 recyclerMovies.setLayoutManager(new LinearLayoutManager(this));
                 recyclerMovies.setItemAnimator(new DefaultItemAnimator());
-                recyclerMovies.setAdapter(new MovieAdapter(movies));
+                recyclerMovies.setAdapter(new FilmeAdapter(movies));
 
                 break;
-            case NetworkUtils.ERROR:
+            case ComunicacaoRest.ERROR:
                 Log.d("ERRO", "Ocorreu um erro");
                 pd.setVisibility(View.GONE);
                 break;
